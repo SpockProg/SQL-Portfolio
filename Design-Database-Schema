@@ -1,0 +1,31 @@
+-- Create table for storing product information
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL NOT NULL
+);
+
+-- Create table for storing salesperson information
+CREATE TABLE salespeople (
+    salesperson_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    region_id INT NOT NULL,
+    FOREIGN KEY (region_id) REFERENCES regions(region_id)
+);
+
+-- Create table for storing region information
+CREATE TABLE regions (
+    region_id SERIAL PRIMARY KEY,
+    region_name VARCHAR(255) NOT NULL
+);
+
+-- Create table for storing sales data
+CREATE TABLE sales (
+    sale_id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    salesperson_id INT NOT NULL,
+    quantity INT NOT NULL,
+    sale_date DATE NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (salesperson_id) REFERENCES salespeople(salesperson_id)
+);
