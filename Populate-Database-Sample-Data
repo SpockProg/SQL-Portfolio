@@ -1,0 +1,15 @@
+-- Insert data into products
+INSERT INTO products (name, price) VALUES ('Laptop', 1200), ('Smartphone', 800), ('Headphones', 150);
+
+-- Insert data into regions
+INSERT INTO regions (region_name) VALUES ('North'), ('South'), ('East'), ('West');
+
+-- Insert data into salespeople
+INSERT INTO salespeople (name, region_id) VALUES ('Alice', 1), ('Bob', 2), ('Charlie', 3), ('David', 4);
+
+-- Insert data into sales
+INSERT INTO sales (product_id, salesperson_id, quantity, sale_date) VALUES 
+(1, 1, 30, '2023-01-15'),
+(2, 2, 45, '2023-01-17'),
+(3, 3, 20, '2023-01-20'),
+(1, 4, 15, '2023-01-25');
