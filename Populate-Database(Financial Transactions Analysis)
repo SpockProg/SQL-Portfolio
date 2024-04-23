@@ -1,0 +1,21 @@
+-- Insert data into accounts
+INSERT INTO accounts (account_name, account_type) VALUES 
+('Checking', 'Bank'),
+('Savings', 'Bank'),
+('Credit Card', 'Credit');
+
+-- Insert data into categories
+INSERT INTO categories (category_name) VALUES 
+('Groceries'),
+('Utilities'),
+('Dining'),
+('Investment'),
+('Salary');
+
+-- Insert data into transactions
+INSERT INTO transactions (account_id, category_id, amount, transaction_date, description) VALUES 
+(1, 1, 150.00, '2023-04-10', 'Weekly groceries'),
+(1, 2, 90.00, '2023-04-15', 'Electric bill'),
+(2, 4, -2000.00, '2023-04-01', 'Monthly investment'),
+(2, 5, 5000.00, '2023-04-01', 'Monthly salary'),
+(3, 3, 120.00, '2023-04-20', 'Dining out');
