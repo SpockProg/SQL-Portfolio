@@ -1,0 +1,36 @@
+#Query to generate a monthly report of expenses and income per category
+
+SELECT c.category_name,
+       EXTRACT(MONTH FROM t.transaction_date) AS month,
+       SUM(t.amount) AS total_amount
+FROM transactions t
+JOIN categories c ON t.category_id = c.category_id
+GROUP BY c.category_name, month
+ORDER BY month, c.category_name;
+
+#Query to track monthly expenses
+
+SELECT EXTRACT(MONTH FROM transaction_date) AS month, SUM(amount) AS total_expenses
+FROM transactions
+WHERE amount < 0
+GROUP BY month
+ORDER BY month;
+
+#Query to visualize expense categories
+
+SELECT category_name, SUM(amount) AS total_amount
+FROM transactions t
+JOIN categories c ON t.category_id = c.category_id
+WHERE amount < 0
+GROUP BY category_name
+ORDER BY total_amount DESC;
+
+#Alert for unusual spending patterns
+
+SELECT account_id, EXTRACT(MONTH FROM transaction_date) AS month, COUNT(*) AS count_transactions, SUM(amount) AS total_spent
+FROM transactions
+WHERE amount < 0
+GROUP BY account_id, month
+HAVING SUM(amount) < (SELECT AVG(amount) * 1.5 FROM transactions WHERE amount < 0)
+ORDER BY total_spent;
+
